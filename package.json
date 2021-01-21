@@ -1,0 +1,26 @@
+{
+  "name": "carsapichallenge",
+  "version": "1.0.0",
+  "description": "SamCart Coding challenge",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eastman81/carsAPIChallenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eastman81/carsAPIChallenge/issues"
+  },
+  "homepage": "https://github.com/eastman81/carsAPIChallenge#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "express": "^4.17.1",
+    "jest": "26.6.3",
+    "moxios": "^0.4.0",
+    "supertest": "^6.1.1"
+  }
+}

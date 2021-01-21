@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Car Searcher</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+        <h1>Cars App</h1>
+        <h3>See what cars are in stock!</h3>
+        <hr />
+        <a href="/api/cars">
+          <button class="btn btn-danger btn-lg">
+            <span class="fa fa-eye"></span> All Cars
+          </button>
+        </a>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="card mb-4">
+            <div class="card-header">
+              <h3><strong>Car Search</strong></h3>
+            </div>
+            <div class="card-body">
+              <input type="text" id="car-search" class="form-control" />
+              <br />
+              <div class="text-right">
+                <button
+                  type="submit"
+                  class="btn btn-primary btn-md"
+                  id="search-btn"
+                >
+                  <span class="fa fa-search"></span> Search for a specific car
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3><strong>Car Details</strong></h3>
+            </div>
+            <div class="card-body">
+              <h2><span id="year"></span> <span id="model"></span></h2>
+              <div id="stats" style="display: none;">
+                <h3><strong>Make:</strong> <span id="make"></span></h3>
+                <h3><strong>Package:</strong> <span id="package"></span></h3>
+                <h3><strong>Color:</strong> <span id="color"></span></h3>
+                <h3><strong>Price:</strong> <span id="price"></span></h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $("#search-btn").on("click", function () {
+        let searchedCar = $("#car-search").val().trim();
+
+        // Using a RegEx Pattern to remove spaces from searchedCar
+        searchedCar = searchedCar.replace(/\s+/g, "").toLowerCase();
+
+        $.get("/api/cars/" + searchedCar, function (data) {
+          console.log(data);
+          if (typeof data === "object") {
+            $("#stats").show();
+            $("#make").text(data.Make);
+            $("#model").text(data.Model);
+            $("#package").text(data.Package);
+            $("#color").text(data.Color);
+            $("#year").text(data.Year);
+            $("#price").text(data.Price);
+          } else {
+            $("#year").text("");
+            $("#model").text("Your car was not found.");
+            $("#stats").hide();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
