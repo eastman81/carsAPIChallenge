@@ -6,7 +6,7 @@ const PORT = 3001;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Cars (DATA)
+// Cars (dummy data)
 const cars = [
   {
     Make: "Toyota",

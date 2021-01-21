@@ -3,13 +3,13 @@ const express = require("express");
 const path = require("path");
 const cars = require('./carRoutes');
 
-// Sets up the Express App
 const PORT = 3000;
 
+// Sets up the Express App
 const app = express();
 app.use(cars());
 
-// Routes
+// Route for HTML
 app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "view.html"));
 });

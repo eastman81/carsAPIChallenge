@@ -70,8 +70,6 @@
     <script type="text/javascript">
       $("#search-btn").on("click", function () {
         let searchedCar = $("#car-search").val().trim();
-
-        // Using a RegEx Pattern to remove spaces from searchedCar
         searchedCar = searchedCar.replace(/\s+/g, "").toLowerCase();
 
         $.get("/api/cars/" + searchedCar, function (data) {
